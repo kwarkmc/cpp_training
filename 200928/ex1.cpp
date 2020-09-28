@@ -14,7 +14,8 @@ public:
 	Account() : money(0) {}
 	Account(int money) : money(money) {}
 	
-	void Deposit (int d) {
+	void Deposit (const int d) { // 매개 변수가 바뀌지 않는 상수화 하는것. 매개변수가 함수 내에서 바뀌는것을 원하지 않을 때 사용.
+		//d = money;
 		money += d;
 		cout << d << "원을 예금했습니다." << endl;
 	}
