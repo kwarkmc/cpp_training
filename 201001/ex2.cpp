@@ -13,7 +13,7 @@ int main() {
 	arr = new int[len]; //arr 에는 len 만큼의 길이가 동적할당 된 배열의 첫 번째 칸의 주소값이 대입된다.
 	
 	for (int i = 0; i < len; i++) {
-		arr[i] = len - 1;
+		arr[i] = len - i;
 	}
 	for (int i = 0; i < len; i++) {
 		cout << arr[i] << endl;
