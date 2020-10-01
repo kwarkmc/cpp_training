@@ -15,12 +15,12 @@ using namespace std;
 class GameWindow {
 public:
 	GameWindow();
-	GameWindow( int, int );
+	GameWindow( const int, const int ); // 생성자는 const를 붙일 수 없다.
 	
-	int GetWidth();
-	int GetHeight();
+	int GetWidth() const;
+	int GetHeight() const;
 	
-	void ResizeWindow(int , int );
+	void ResizeWindow(const int , const int ); //ResizeWindow 매서드와 같이 멤버 값이 변하는 메서드는 상수화 시켜줄 수 없다.
 	
 private:
 	int width;
@@ -28,10 +28,10 @@ private:
 };
 
 GameWindow::GameWindow() : width(800), height(600) { }
-GameWindow::GameWindow( int w, int h ) {
+GameWindow::GameWindow( const int w, const int h ) {
 	ResizeWindow(w, h);
 }
-void GameWindow::ResizeWindow (int w, int h) {
+void GameWindow::ResizeWindow (const int w, const int h) {
 	if(w < 800) {
 		width = 800;
 	}
@@ -47,8 +47,8 @@ void GameWindow::ResizeWindow (int w, int h) {
 	}
 }
 
-int GameWindow::GetWidth() { return width; }
-int GameWindow::GetHeight() { return height; }
+int GameWindow::GetWidth() const { return width; }
+int GameWindow::GetHeight() const { return height; }
 
 int main() {
 	GameWindow mainWindow(500, 768);
