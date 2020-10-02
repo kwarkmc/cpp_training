@@ -32,6 +32,18 @@ public:
 		strData = NULL;
 	}
 	
+	String &operator=(const String &rhs) { //레퍼런스 변수로 만들어 주는것이 왜인지 이해가 안됨.
+		if(this == &rhs) {
+		delete[] strData;
+		strData = new char[rhs.len + 1];
+		cout << "strData 할당 : " << (void*)strData << endl;
+		strcpy(strData, rhs.strData);
+		len = rhs.len;
+		}
+		
+		return *this; // 이 함수가 속해있는 객체 자체를 리턴.
+	}
+	
 	char *GetStrData() const {
 		return strData;
 	}
@@ -48,7 +60,10 @@ private:
 int main() {
 	String s1("안녕");
 	String s2(s1); // s2 = s1 과 같은 의미 , 복사 생성자
+	String s3 ("Hello");
+	s3 = s1;
 	
 	cout << s1.GetStrData() << endl;
 	cout << s2.GetStrData() << endl;
+	cout << s3.GetStrData() << endl;
 }
