@@ -17,6 +17,14 @@ public:
 		cout << "strData 할당 : " << (void*)strData << endl; //void 포인터는 strData 배열에 대한 주소값은 가지고 있지만 그 포인터가 가르키고 있는게 배열인지에 대한 정보는 가지고 있지 않다.
 		strcpy(strData, str); // 깊은 복사
 	}
+	String(const String &rhs) {
+		cout << "String(String &rhs) 생성자 호출" << endl;
+		strData = new char[rhs.len + 1];
+		cout << "strData 할당 : " << (void*)strData << endl;
+		strcpy(strData, rhs.strData);
+		len = rhs.len;
+	}
+	
 	~String() {
 		cout << "~String 소멸자 호출" << endl;
 		delete[] strData;
@@ -39,7 +47,7 @@ private:
 
 int main() {
 	String s1("안녕");
-	String s2(s1); // s2 = s1 과 같은 의미
+	String s2(s1); // s2 = s1 과 같은 의미 , 복사 생성자
 	
 	cout << s1.GetStrData() << endl;
 	cout << s2.GetStrData() << endl;
