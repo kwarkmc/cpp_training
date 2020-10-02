@@ -34,11 +34,11 @@ public:
 	
 	String &operator=(const String &rhs) { //레퍼런스 변수로 만들어 주는것이 왜인지 이해가 안됨.
 		if(this == &rhs) {
-		delete[] strData;
-		strData = new char[rhs.len + 1];
-		cout << "strData 할당 : " << (void*)strData << endl;
-		strcpy(strData, rhs.strData);
-		len = rhs.len;
+			delete[] strData;
+			strData = new char[rhs.len + 1];
+			cout << "strData 할당 : " << (void*)strData << endl;
+			strcpy(strData, rhs.strData);
+			len = rhs.len;
 		}
 		
 		return *this; // 이 함수가 속해있는 객체 자체를 리턴.
