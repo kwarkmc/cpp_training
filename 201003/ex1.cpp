@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cstring>
+#include <iostream>
 
 using namespace std;
 
@@ -18,7 +18,7 @@ public:
 	}
 	String(const String &rhs) {
 		cout << "String(const String&) : " << this << endl;
-		len = this.len;
+		len = rhs.len;
 		alloc(len);
 		strcpy(strData, rhs.strData);
 	}
