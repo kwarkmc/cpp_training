@@ -18,14 +18,28 @@ public:
 		cout << "Item(int, string)" << endl;
 	}
 	
-	void print() {
-		cout << num << " : " << name << endl;
+	//explicit -> 명시적으로 적어주지 않으면 묵시적 형변환을 불가능하게 만드는것.
+	/*explicit*/ operator int() const { //int로의 형 변환 연산자 오버로딩
+		return num;
+	}
+	
+	//string 으로의 형 변환 연산자 오버로딩
+	 operator string() const {
+		return to_string(num) + " : " + name; //to_string 함수 -> 여러 자료형들을 string 형(문자열)으로 바꿔준다
 	}
 	
 private:
 	int num;
 	string name;
 };
+
+void println(string s) {
+	cout << s << endl;
+}
+
+/*void println(int n) {
+	cout << n << endl;
+}*/
 
 int main() {
 	Item i1 = Item(1);
@@ -42,12 +56,12 @@ int main() {
 	i7 = {2, "dirt"}; // 매개변수가 두 개인 상황에서 묵시적 변환을 쓰고싶을 때 사용
 	Item i8 {3, "wood"};
 	
-	i1.print();
-	i2.print();
-	i3.print();
-	i4.print();
-	i5.print();
-	i6.print();
-	i7.print();
-	i8.print();
+	int itemNum1 = (int)i8; //(int) 형 변환도 연산자이고, 오버로딩 가능하다.
+	int itemNum2 = i7; // 묵시적 형 변환 (형 변환 연산자 오버로딩을 해도 묵시적 형 변환이 가능하다.)
+	
+	cout << itemNum1 << endl;
+	cout << itemNum2 << endl;
+	
+	println((string)i8); // 명시적 형 변환
+	println(i8); // 묵시적 형 변환
 }
