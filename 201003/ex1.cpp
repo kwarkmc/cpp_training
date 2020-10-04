@@ -23,6 +23,13 @@ public:
 		strcpy(strData, rhs.strData);
 	}
 	
+	String(String &&rhs) { //매개변수가 r-value가 되면, String res 가 임시객체로 복사가 될 때 호출된다.
+		cout << "String(String&&) : " << this << endl;
+		len = rhs.len;
+		strData = rhs.strData; // 얕은 복사
+		rhs.strData = NULL;
+	}
+	
 	~String() {
 		cout << "~String() : " << this << endl;
 		release();
@@ -38,6 +45,14 @@ public:
 			strcpy(strData, rhs.strData);
 		}
 		return *this;
+	}
+	
+	String &operator=(String &&rhs) {
+		cout << "String &operator=(String &&) : " << this << endl;
+		len = rhs.len;
+		strData = rhs.strData; // 얕은 복사
+		rhs.strData = NULL;
+		return *this; // String a = b= c; 와 같이 연쇄적인 대입연산자를 처리하기 위해 return *this 추가.
 	}
 	
 	char *GetStrData() const {
