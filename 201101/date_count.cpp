@@ -14,6 +14,20 @@ public:
 	int GetCurrentMonthTotalDays(int year, int month);
 	
 	void ShowDate();
+	
+	Date() { // 디폴트 생성자. 클래스가 생성될 때, 인자가 하나도 안들어오면 디폴트 생성자가 실행된다.
+		std::cout << "디폴트 생성자 생성!" << std::endl;
+		year_ = 2020;
+		month_ = 11;
+		day_ = 1;
+	}
+	
+	Date(int year, int month, int day) { // constructor, 생성자. 객체를 초기화하는 역할을 하기 때문에 리턴값이 없다.
+		std::cout << "인자 3개 생성자 생성!" << std::endl;
+		year_ = year;
+		month_ = month;
+		day_ = day;
+	}
 };
 
 void Date::SetDate(int year, int month, int day) {
@@ -64,7 +78,9 @@ void Date::ShowDate() {
 
 int main() {
 	Date day;
-	day.SetDate(2011, 3, 1);
+	day.ShowDate();
+	
+	day.SetDate(2020, 11, 02);
 	day.ShowDate();
 	
 	day.AddDay(35);
