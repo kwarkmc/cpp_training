@@ -17,7 +17,7 @@ public:
 	~Marine() { total_marine_num--; }
 	
 	int attack();
-	void be_attacked(int damage_earn);
+	Marine& be_attacked(int damage_earn);
 	void move(int x, int y);
 	
 	void show_status();
@@ -45,9 +45,20 @@ void Marine::move(int x, int y) {
 
 int Marine::attack() { return default_damage; }
 
-void Marine::be_attacked(int damage_earn) {
+Marine& Marine::be_attacked(int damage_earn) {
 	hp -= damage_earn;
-	if(hp <= 0) is_dead = true;
+	if (hp <= 0) is_dead = true;
+	
+	return *this; // this는 객체 자신을 가리키는 포인터의 역할을 한다.
+	
+	/*
+	this->hp -= damage_earn;
+	if(this->hp <= 0) this->is_dead = true;
+	
+	return *this;
+	와 같은 의미의 코드이다.
+	*/
+	
 }
 
 void Marine::show_status() {
@@ -68,8 +79,6 @@ int main() {
 	
 	Marine marine2(3, 5, 10);
 	Marine::show_total_marine();
-	
-	create_marine();
 	
 	std::cout << std::endl << "마린 1이 마린 2를 공격!" << std::endl;
 	marine2.be_attacked(marine1.attack());
