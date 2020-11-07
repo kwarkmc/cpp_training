@@ -2,7 +2,8 @@
 
 class Marine {
 private:
-	static int total_marine_num;
+	static int total_marine_num; // static 변수는 소멸자가 생성될때 없어지는것이 아니라, 프로그램이 종료될때 까지 남아있다가 없어진다. + 클래스로 선언한 어떤 객체에 존재하는것이 아니라, 클래스 그 자체에 종속되는것이다.
+	const static int i = 0;
 	
 	int hp;
 	int coord_x, coord_y;
@@ -20,9 +21,14 @@ public:
 	void move(int x, int y);
 	
 	void show_status();
+	static void show_total_marine();
 };
 
 int Marine::total_marine_num = 0;
+
+void Marine::show_total_marine() {
+	std::cout << "전체 마린 수 : " << total_marine_num << std::endl;
+}
 
 Marine::Marine() : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) { total_marine_num++; } // 초기화 리스트 (initializer list) 생성자 호출과 동시에 멤버 변수들을 초기화해준다.
 
@@ -58,10 +64,10 @@ void create_marine() {
 
 int main() {
 	Marine marine1(2, 3, 5);
-	marine1.show_status();
+	Marine::show_total_marine(); // static 함수는 객체가 아닌 클래스 자체에 종속되어있는 것이기 때문에 호출하는 방법이 다르다.
 	
 	Marine marine2(3, 5, 10);
-	marine2.show_status();
+	Marine::show_total_marine();
 	
 	create_marine();
 	
