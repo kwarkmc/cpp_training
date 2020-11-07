@@ -16,7 +16,7 @@ public:
 	Marine(int x, int y, int default_damage);
 	~Marine() { total_marine_num--; }
 	
-	int attack();
+	int attack() const;
 	Marine& be_attacked(int damage_earn);
 	void move(int x, int y);
 	
@@ -43,7 +43,7 @@ void Marine::move(int x, int y) {
 	coord_y = y;
 }
 
-int Marine::attack() { return default_damage; }
+int Marine::attack() const { return default_damage; } // 상수 멤버 함수. 상수 멤버 함수 안에서는 객체들의 '읽기'만이 수행될 수 있다.
 
 Marine& Marine::be_attacked(int damage_earn) {
 	hp -= damage_earn;
@@ -86,3 +86,5 @@ int main() {
 	marine1.show_status();
 	marine2.show_status();
 }
+
+//4-4
